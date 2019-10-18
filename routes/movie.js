@@ -6,6 +6,7 @@ var router = express.Router();
 const Movie = require("../models/Movie");
 router.get("/", (req, res) => {
   const promise = Movie.find({});
+  console.log(promise);
   promise
     .then(data => {
       res.json(data);
@@ -96,7 +97,8 @@ router.post("/", function(req, res, next) {
   const promise = movie.save();
   promise
     .then(data => {
-      res.json({ status: 1 });
+      res.json({ data });
+      //res.json({ status: 1 });
     })
     .catch(err => {
       res.json(err);
