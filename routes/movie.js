@@ -78,31 +78,21 @@ router.delete("/:movie_id", (req, res, next) => {
 
 /* GET users listing. */
 router.post("/", function(req, res, next) {
-  // const {title,imdb_score,category,country,year}=req.body;
-  const movie = new Movie(
-    /*{
-  /*  title:title,
-    imdb_score:imdb_score,
-    category:category,
-    country:country,
-    year:year
-  }*/ req.body
-  );
-  /* movie.save((err,data)=>{
+  const movie = new Movie(req.body);
+  movie.save((err,data)=>{
     if(err){
-      res.json(err);
+      res.json(err)
     }
-    res.json(data);
-  });*/
-  const promise = movie.save();
-  promise
-    .then(data => {
-      res.json({ data });
-      //res.json({ status: 1 });
-    })
-    .catch(err => {
+    else{
+      res.json(data);
+    }
+  });
+ // const promise = movie.save();
+/*  promise.then((data) => {
+      res.json({status:1});
+    }).catch((err) => {
       res.json(err);
-    });
+    });*/
 });
 router.get("/between/:start_year/:end_year", (req, res) => {
   const {start_year,end_year} = req.params; 
