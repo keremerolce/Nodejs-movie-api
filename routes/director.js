@@ -6,7 +6,14 @@ var router = express.Router();
 const Director=require('..//models/Director');
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  const director=new Director(req.body);
+  const promise=director.save();
+
+  promise.then((data)=>{
+    res.json(data);
+  }).catch((err)=>{
+    res.json(data);
+  });
 });
 
 module.exports = router;
