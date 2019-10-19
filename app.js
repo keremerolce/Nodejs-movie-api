@@ -13,6 +13,9 @@ var app = express();
 
 //db connection
 const db=require('./helper/db.js')();
+//config connection
+const config=require('./config');
+app.set('api_secret_key',config.api_secret_key);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
